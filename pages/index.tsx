@@ -4,10 +4,11 @@ import { User } from '../types/types'
 import type { AxiosError, AxiosResponse } from 'axios'
 
 const Home: NextPage = () => {
+  // change the api endpoint to `/api/user1` to get a 404
   const { data, isValidating, mutate, error } = useSWR<
     AxiosResponse<{ users: User[] }>,
     AxiosError
-  >('/api/user1')
+  >('/api/user')
 
   if (error) return <h1>Error</h1>
   if (!data) return <h1>Loading...</h1>

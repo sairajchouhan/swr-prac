@@ -9,6 +9,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     <SWRConfig
       value={{
         fetcher: (config: AxiosRequestConfig) => axios(config),
+        // By adding `onErrorRetry` as below,I avoid retrying if request resutls in 404
+        // but I loose exponential backoff algorithm for every request from now
         onErrorRetry: (err) => {
           if (err.response.status === 404) return
         },
